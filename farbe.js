@@ -1,1 +1,0 @@
-//learning JavaScript while creating a list of colors used on a web page
