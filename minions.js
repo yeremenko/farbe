@@ -1,4 +1,5 @@
-//learning JavaScript while creating a list of colors used on a web page
+//Learning JavaScript while creating a list of colors used on a web page
+
 $(document).ready(function(){
 
 
@@ -12,28 +13,26 @@ $(document).ready(function(){
 	//Event when user uploads file
 	$('#searchField').on('change' , function(){
         var selectedFile 		= this.files[0],
-        	selectedFileName	= selectedFile.name;						//store file name
+        	selectedFileName	= selectedFile.name;							//store file name
 
         	//make sure uploaded file is a css
         	function checkFileExt () {
-        		var selectedFileExt	= selectedFileName.split(/[\s.]+/);		//splits file name based on "."
-				// var checkExt		= /\.css$/i; 							//css extention using regex
+        		var splitFileName 	= selectedFileName.split(/[\s.]+/);
+        		var selectedFileExt	= splitFileName[splitFileName.length-1];	//splits file name based on "."
+				// var checkExt		= /\.css$/i; 								//css extention using regex
 
 				if (selectedFileExt != "css") {
-					alert("This is NOT a CSS file!");
+					console.log("This is NOT a CSS file!");
 				} else {
-       	 			alert('Successfully uploaded' + ' ' + selectedFileName);
-					
-				}
+       	 			console.log('Successfully Uploaded: ' + selectedFileName);
+       	 			console.log('File Size: ' + selectedFile.size);
+				};
         	};
 
         	checkFileExt();
-
-        // alert('Successfully Uploaded' + ' ' + selectedFile.name);
-        // alert('Successfully Uploaded' + ' ' + selectedFile.size);
 	});
 
-	//find colors in css files
+	//Find colors in css files
 	function findColors() {
 
 	};
