@@ -11,25 +11,31 @@ $(document).ready(function(){
 
 	//Event when user uploads file
 	$('#searchField').on('change' , function(){
-        var selectedFile = this.files[0];
-        alert('Successfully uploaded' + ' ' + selectedFile.name);
+        var selectedFile 		= this.files[0],
+        	selectedFileName	= selectedFile.name;						//store file name
+
+        	//make sure uploaded file is a css
+        	function checkFileExt () {
+        		var selectedFileExt	= selectedFileName.split(/[\s.]+/);		//splits file name based on "."
+				// var checkExt		= /\.css$/i; 							//css extention using regex
+
+				if (selectedFileExt != "css") {
+					alert("This is NOT a CSS file!");
+				} else {
+       	 			alert('Successfully uploaded' + ' ' + selectedFileName);
+					
+				}
+        	};
+
+        	checkFileExt();
+
+        // alert('Successfully Uploaded' + ' ' + selectedFile.name);
         // alert('Successfully Uploaded' + ' ' + selectedFile.size);
 	});
 
 	//find colors in css files
 	function findColors() {
 
-		// $('p').on('click' , function() {
-		// 	var url = this.text();
-
-		// 	alert(url);
-		// });
-
 	};
 
 });
-
-
-
-
-//find inline colors
