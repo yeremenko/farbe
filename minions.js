@@ -21,15 +21,31 @@ $(document).ready(function(){
         		var selectedFileExt	= splitFileName[splitFileName.length-1];	//splits file name based on "."
 				// var checkExt		= /\.css$/i; 								//css extention using regex
 
+				//Check if uploaded file is a CSS file
 				if (selectedFileExt != "css") {
 					console.log("This is NOT a CSS file!");
 				} else {
-       	 			console.log('Successfully Uploaded: ' + selectedFileName);
-       	 			console.log('File Size: ' + selectedFile.size);
+       	 			console.log('Successfully Uploaded: ' + '\n' + 'File Name: ' + selectedFileName + '\n' + 'File Size: ' + selectedFile.size + ' bytes');
+
+       	 			//Function that gets contents from inside file
+       	 			function getFileContents () {
+		        		var reader		 = new FileReader();						
+
+		        		reader.onload 	 = function(contents) {
+		        			var fileContents = contents.target.result;			//Stores file contents into variable
+							console.log(fileContents);
+		        		};
+
+		        		reader.readAsText(selectedFile);						//Gets file contents into string
+		        	};
+
+		        	getFileContents();
+
 				};
         	};
 
         	checkFileExt();
+
 	});
 
 	//Find colors in css files
