@@ -17,8 +17,8 @@ $(document).ready(function(){
 
         	//make sure uploaded file is a css
         	function checkFileExt () {
-        		var splitFileName 	= selectedFileName.split(/[\s.]+/);
-        		var selectedFileExt	= splitFileName[splitFileName.length-1];	//splits file name based on "."
+        		var splitFileName 	= selectedFileName.split('.');				//splits file name based on "."
+        		var selectedFileExt	= splitFileName[splitFileName.length-1];	//get last index of array
 				// var checkExt		= /\.css$/i; 								//css extention using regex
 
 				//Check if uploaded file is a CSS file
@@ -29,14 +29,21 @@ $(document).ready(function(){
 
        	 			//Function that gets contents from inside file
        	 			function getFileContents () {
-		        		var reader		 = new FileReader();						
+		        		var reader = new FileReader();						
 
 		        		reader.onload 	 = function(contents) {
-		        			var fileContents = contents.target.result;			//Stores file contents into variable
-							console.log(fileContents);
+		        			var fileContents = contents.target.result;			//Stores file contents
+		        			// var firstPattern = /#[0-9aA-fF]{6}/gi;
+		        			// var hexSix = /#[0-9aA-fF]{6}/gi;
+		        			var hexMatch = /#[0-9aA-fF]{3,6}/gi;
+							// var matches = firstPattern.exec(fileContents);
+							var matches = fileContents.match(hexMatch);
+							if (hexMatch = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/){
+								console.log('Matches' , matches);
+							};
 		        		};
-
 		        		reader.readAsText(selectedFile);						//Gets file contents into string
+
 		        	};
 
 		        	getFileContents();
@@ -47,10 +54,5 @@ $(document).ready(function(){
         	checkFileExt();
 
 	});
-
-	//Find colors in css files
-	function findColors() {
-
-	};
 
 });
