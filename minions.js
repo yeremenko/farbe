@@ -19,13 +19,13 @@ $(document).ready(function(){
         	function checkFileExt () {
         		var splitFileName 	= selectedFileName.split('.');				//splits file name based on "."
         		var selectedFileExt	= splitFileName[splitFileName.length-1];	//get last index of array
-				// var checkExt		= /\.css$/i; 								//css extention using regex
 
 				//Check if uploaded file is a CSS file
 				if (selectedFileExt != "css") {
 					console.log("This is NOT a CSS file!");
 				} else {
-       	 			console.log('Successfully Uploaded: ' + '\n' + 'File Name: ' + selectedFileName + '\n' + 'File Size: ' + selectedFile.size + ' bytes');
+       	 			console.log('File Name: ' + selectedFileName);
+       	 			console.log('File Size: ' + selectedFile.size + ' bytes');
 
        	 			//Function that gets contents from inside file
        	 			function getFileContents () {
@@ -33,14 +33,10 @@ $(document).ready(function(){
 
 		        		reader.onload 	 = function(contents) {
 		        			var fileContents = contents.target.result;			//Stores file contents
-		        			// var firstPattern = /#[0-9aA-fF]{6}/gi;
-		        			// var hexSix = /#[0-9aA-fF]{6}/gi;
-		        			var hexMatch = /#[0-9aA-fF]{3,6}/gi;
-							// var matches = firstPattern.exec(fileContents);
-							var matches = fileContents.match(hexMatch);
-							if (hexMatch = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/){
-								console.log('Matches' , matches);
-							};
+		        			var hexMatch 	 = /#[0-9a-f]{3,6}( *)?;/gi;		//RegEx searches file for starting #hex, ends with ;, 
+							var colorGroup = fileContents.match(hexMatch);		//Runs file contents through Regex
+
+							console.log('Matched' , colorGroup);
 		        		};
 		        		reader.readAsText(selectedFile);						//Gets file contents into string
 
