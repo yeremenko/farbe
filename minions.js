@@ -33,10 +33,20 @@ $(document).ready(function(){
 
 		        		reader.onload 	 = function(contents) {
 		        			var fileContents = contents.target.result;			//Stores file contents
-		        			var hexMatch 	 = /#[0-9a-f]{3,6}( *)?;/gi;		//RegEx searches file for starting #hex, ends with ;, 
-							var colorGroup = fileContents.match(hexMatch);		//Runs file contents through Regex
 
-							console.log('Matched' , colorGroup);
+		        			var hexMatch 	 = /#[0-9a-f]{3,6}( *)?;/gi;		//RegEx searches file for starting #hex, ends with ;, 
+							var colorGroup 	 = fileContents.match(hexMatch);	//Runs file contents through Regex
+
+		        			var rgbMatch	 = /(rgb\([^)]*\))/gi;				//RegEx matches rgb
+							var rgbGroup 	 = fileContents.match(rgbMatch);	//Runs file contents through Regex
+
+							var rgbaMatch	 = /(rgba\([^)]*\))/gi;				//RegEx matches rgb
+							var rgbaGroup 	 = fileContents.match(rgbaMatch);	//Runs file contents through Regex
+
+							console.log('HEX' , colorGroup);
+							console.log('RGB' , rgbGroup);
+							console.log('RGBA' , rgbaGroup);
+							// console.log('WORD' , wordGroup);
 		        		};
 		        		reader.readAsText(selectedFile);						//Gets file contents into string
 
