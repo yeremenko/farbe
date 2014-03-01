@@ -43,10 +43,13 @@ $(document).ready(function(){
 							var rgbaMatch	 = /(rgba\([^)]*\))/gi;				//RegEx matches rgb
 							var rgbaGroup 	 = fileContents.match(rgbaMatch);	//Runs file contents through Regex
 
+							var wordMatch	 = / /gi;							//RegEx matches word
+							var wordGroup 	 = fileContents.match(wordMatch);	//Runs file contents through Regex
+
 							console.log('HEX' , colorGroup);
 							console.log('RGB' , rgbGroup);
 							console.log('RGBA' , rgbaGroup);
-							// console.log('WORD' , wordGroup);
+							console.log('WORD' , wordGroup);
 		        		};
 		        		reader.readAsText(selectedFile);						//Gets file contents into string
 
