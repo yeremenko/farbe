@@ -34,8 +34,8 @@ $(document).ready(function(){
 		        		reader.onload 	 = function(contents) {
 		        			var fileContents = contents.target.result;			//Stores file contents
 
-		        			var hexMatch 	 = /#[0-9a-f]{3,6}( *)?;/gi;		//RegEx searches file for starting #hex, ends with ;, 
-							var colorGroup 	 = fileContents.match(hexMatch);	//Runs file contents through Regex
+		        			var hexMatch 	 = /#[0-9a-f]{3,6}( *)/gi;			//RegEx searches file for starting #hex, ends with ;, 
+							var hexGroup 	 = fileContents.match(hexMatch);	//Runs file contents through Regex
 
 		        			var rgbMatch	 = /(rgb\([^)]*\))/gi;				//RegEx matches rgb
 							var rgbGroup 	 = fileContents.match(rgbMatch);	//Runs file contents through Regex
@@ -43,13 +43,27 @@ $(document).ready(function(){
 							var rgbaMatch	 = /(rgba\([^)]*\))/gi;				//RegEx matches rgb
 							var rgbaGroup 	 = fileContents.match(rgbaMatch);	//Runs file contents through Regex
 
-							var wordMatch	 = / /gi;							//RegEx matches word
-							var wordGroup 	 = fileContents.match(wordMatch);	//Runs file contents through Regex
+							//var wordMatch	 = / /gi;							//RegEx matches word
+							//var wordGroup 	 = fileContents.match(wordMatch);	//Runs file contents through Regex
 
-							console.log('HEX' , colorGroup);
-							console.log('RGB' , rgbGroup);
-							console.log('RGBA' , rgbaGroup);
-							console.log('WORD' , wordGroup);
+							var allMatches	 = hexGroup + rgbGroup + rgbaGroup;
+
+							function colorWrap () {
+								$( allMatches ).each( function () {
+
+								});
+								// $( "#colorList" ).append( "<li>" +  + "</li>" );
+								console.log(allMatches);
+
+							};
+		        			colorWrap();
+
+
+							//console.log('HEX' , hexGroup);
+							//console.log('RGB' , rgbGroup);
+							//console.log('RGBA' , rgbaGroup);
+							//console.log('WORD' , wordGroup);
+							// console.log(allMatches);
 		        		};
 		        		reader.readAsText(selectedFile);						//Gets file contents into string
 
