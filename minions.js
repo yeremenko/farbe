@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
 
-
 	// Check for the various File API support.
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
 	  // alert('Great success! All the File APIs are supported.');
@@ -30,8 +29,7 @@ $(document).ready(function(){
        	 			//Function that gets contents from inside file
        	 			function getFileContents () {
 		        		var reader = new FileReader();						
-		        		var colorList = [];
-						var $colorListUl = $('#colorList');
+													//Empty array for colors
 
 
 		        		reader.onload 	 = function(contents) {
@@ -49,16 +47,20 @@ $(document).ready(function(){
 							//var wordMatch	 = / /gi;												//RegEx matches word
 							//var wordGroup  = fileContents.match(wordMatch);						//Runs file contents through Regex
 
-							colorList	= $.merge(hexGroup, $.merge(rgbGroup, rgbaGroup));
+							var colorList	= hexGroup.concat(rgbGroup).concat(rgbaGroup);			//Combine all matched groups into colorList array
+							var $colorListUl = $('#colorList');											//Name of DOM div where colors will be added
 
-							$(colorList).each(function (i, color) {
+
+							//add each matched color to #colorList UL
+							$(colorList).each(function (i, color) {	
 								$('<li>' + color + '</li>').appendTo($colorListUl);
 							});
 
-							// console.log('HEX' , hexGroup);
-							// console.log('RGB' , rgbGroup);
-							// console.log('RGBA' , rgbaGroup);
+							console.log('HEX' , hexGroup);
+							console.log('RGB' , rgbGroup);
+							console.log('RGBA' , rgbaGroup);
 							// console.log('WORD' , wordGroup);
+
 		        		};
 		        		reader.readAsText(selectedFile);											//Gets file contents into string
 
