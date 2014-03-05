@@ -36,12 +36,9 @@ table {
 
 /* -- LE STYLES -- */
 
-section {
+#huge {
 	padding-top: 60px;
 	padding-bottom: 60px;
-}
-
-#huge {
 	background: #f88a04; /* Old browsers */
 	background: -moz-linear-gradient(top, #f88a04 0%, #f16d06 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f88a04), color-stop(100%,#f16d06)); /* Chrome,Safari4+ */
@@ -70,4 +67,5 @@ section {
 	display: block;
 	text-align: center;
 	width: 100%;
+	line-height: 50px;
 }

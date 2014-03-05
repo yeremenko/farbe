@@ -28,8 +28,7 @@ $(document).ready(function(){
 
        	 			//Function that gets contents from inside file
        	 			function getFileContents () {
-		        		var reader = new FileReader();						
-													//Empty array for colors
+		        		var reader = new FileReader();												//Empty array for colors
 
 
 		        		reader.onload 	 = function(contents) {
@@ -48,12 +47,17 @@ $(document).ready(function(){
 							//var wordGroup  = fileContents.match(wordMatch);						//Runs file contents through Regex
 
 							var colorList	= hexGroup.concat(rgbGroup).concat(rgbaGroup);			//Combine all matched groups into colorList array
-							var $colorListUl = $('#colorList');										//Div where colors will be added to jQuery selector
+							var $colorListUl = $('#color-list');									//Div where colors will be added to jQuery selector
 
 
 							//add each matched color to #colorList UL
 							$(colorList).each(function (i, color) {	
-								$('<div>' + color + '</div>').addClass('color-wrapper').appendTo($colorListUl);
+								var $li = $('<li>');
+								
+								$li.addClass( 'color-wrapper' );
+								$li.css( 'background-color' , color );
+								$li.html( color );
+								$colorListUl.append( $li );
 							});
 
 							console.log('HEX' , hexGroup);
