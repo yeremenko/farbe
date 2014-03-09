@@ -12,11 +12,16 @@
 <body>
 
 <section id="huge">
-	<h1 class="text-center"><strong>Farbe - Color Grabber</strong></h1>
-	<p class="lead text-center">Upload a CSS file to view color palette</p>
-	<form id="searchForm" class="form-horizontal container">
-		<input name="urlSearch" type="file" placeholder="ccs file" id="searchField" class="">
-	</form>
+	<div id="huge-inner" class="container">	
+		<h1 class="text-center"><strong>Farbe</strong> <span class="skinny">Color Grabber</span></h1>
+		<p class="lead text-center">Upload a CSS file to view color palette</p>
+		<form id="searchForm" class="col-xs-6 col-md-4 col-xs-offset-3 col-md-offset-4">
+			<div class="form-group" class="">
+				<label for="searchField" class="urlSearch-label btn btn-lg btn-block text-center">Upload File</label>
+				<input type="file" name="urlSearch" id="searchField" class="text-center btn btn-block" style="display:none;">
+			</div>
+		</form>
+	</div>
 </section>
 
 <section id="color-list-wrapper">

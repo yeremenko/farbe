@@ -16,6 +16,10 @@ var getFileContents = function (selectedFile) {
   var rgbaGroup = fileContents.toUpperCase().match(rgbaMatch);
   
   var colorList	= hexGroup.concat(rgbGroup).concat(rgbaGroup);
+  // $.unique(colorList);
+  // console.log(colorList);
+
+
   var $colorListUl = $('#color-list');
 
     //add each matched color to #colorList UL
@@ -24,13 +28,10 @@ var getFileContents = function (selectedFile) {
 			
       $li.addClass( 'color-wrapper' );
       $li.css( 'background-color' , color );
+      $li.css( 'color' , color );
       $li.html( color );
-      $colorListUl.append( $li );
+      $li.appendTo($colorListUl);
     });
-
-    console.log('HEX' , hexGroup);
-    console.log('RGB' , rgbGroup);
-    console.log('RGBA' , rgbaGroup);
 
     };
     reader.readAsText(selectedFile);
@@ -48,8 +49,26 @@ var isFileCss = function(selectedFileName, selectedFile) {
   }
 };
 
+//Give section a pattern background to see color's transparency
+var listBG = function(section){
+  var bgPattern = "img/pat-bg.jpg";
+  $('#color-list-wrapper').css('background-image', 'url(' + bgPattern + ')');
+};
+
+var adjustHeight   = function () {
+  var $huge        = $("#huge"),
+      windowHeight = $(window).height();
+
+    $huge.height(windowHeight - 120);
+};
+
+var changeBtnValue = function() {
+  $('.urlSearch-label').text('Success!');
+};
 
 $(document).ready(function(){
+
+  adjustHeight(); 
 
   // Check for the various File API support.
   if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -63,16 +82,21 @@ $(document).ready(function(){
     var selectedFile = this.files[0],
     selectedFileName = selectedFile.name;
 
-    console.log('File Name: ' + selectedFileName);
-    console.log('File Size: ' + selectedFile.size + ' bytes');
+    // console.log('File Name: ' + selectedFileName);
+    // console.log('File Size: ' + selectedFile.size + ' bytes');
 
 		//make sure uploaded file is a css
 		if (isFileCss(selectedFileName)){
 			getFileContents(selectedFile);
+      listBG();
+      changeBtnValue();
+
 		} else {
 			alert("Not css, try again!");
 		}
 
 	});
+
+  $(window).on('resize', adjustHeight);
 
 });

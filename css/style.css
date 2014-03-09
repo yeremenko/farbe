@@ -36,6 +36,10 @@ table {
 
 /* -- LE STYLES -- */
 
+.text-inline-block {
+	display: inline-block;
+}
+
 #huge {
 	padding-top: 60px;
 	padding-bottom: 60px;
@@ -50,17 +54,57 @@ table {
 	color:#fff;
 }
 
+#huge h1 {
+	font-size: 48px;
+}
+
+.skinny {
+	display: inline-block;
+	font-weight: 100;
+}
+
 #huge .lead {
 	color:#7c3802;
 }
 
-#searchField {
+#huge-inner {
+	margin-top: 60px;
+}
+
+.urlSearch-label {
+	border-radius: 4px;
+	font-weight: 200;
+	border: 2px solid #ffffff !important;
+	margin-top: 20px;
+	-webkit-transition:background .3s ease;
+    -moz-transition:background .3s ease;
+    -o-transition:background .3s ease;
+    transition:background .3s ease;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.urlSearch-label:hover,
+.urlSearch-label:focus {
+	background-color: #ffffff;
+	color: #f16d06 !important;
+}
+
+.urlSearch-label:active {
+	box-shadow: none;
+}
+
+/*#searchField {
 	width: 200px;
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
 	overflow: auto;
 	font-weight: 200;
+}*/
+
+#color-list{
+	margin: 0;
 }
 
 .color-wrapper {
