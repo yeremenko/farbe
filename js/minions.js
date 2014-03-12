@@ -3,6 +3,11 @@
 var getFileContents = function (selectedFile) {
   var reader = new FileReader();
 
+  // internall maybe:
+
+// var contentsObj = {/* whatver */ };
+//   FileReader.onload(contentsObj)
+
   reader.onload = function(contents) {
   var fileContents = contents.target.result;
 
@@ -21,6 +26,23 @@ var getFileContents = function (selectedFile) {
 
 
   var $colorListUl = $('#color-list');
+
+
+    // $.fn.each = function (cb) {
+
+    //   // iterate over some stuff.
+
+    //   $(this); // => [elem1, elem2, elem3, ...]
+    //   var idx = 0, currentElem;
+
+    //   $(this).forEach(function (elem) {
+    //     cb(idx, elem);
+    //     idx += 1;
+    //   });
+
+    // };
+
+
 
     //add each matched color to #colorList UL
     $(colorList).each(function (i, color) {	
@@ -50,9 +72,9 @@ var isFileCss = function(selectedFileName, selectedFile) {
 };
 
 //Give section a pattern background to see color's transparency
-var listBG = function(section){
+var listBG = function(sectionID){
   var bgPattern = "img/pat-bg.jpg";
-  $('#color-list-wrapper').css('background-image', 'url(' + bgPattern + ')');
+  $(sectionID).css('background-image', 'url(' + bgPattern + ')');
 };
 
 var adjustHeight   = function () {
@@ -88,7 +110,7 @@ $(document).ready(function(){
 		//make sure uploaded file is a css
 		if (isFileCss(selectedFileName)){
 			getFileContents(selectedFile);
-      listBG();
+      // listBG('#color-list-wrapper');
       changeBtnValue();
 
 		} else {

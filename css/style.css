@@ -90,19 +90,6 @@ table {
 	color: #f16d06 !important;
 }
 
-.urlSearch-label:active {
-	box-shadow: none;
-}
-
-/*#searchField {
-	width: 200px;
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	overflow: auto;
-	font-weight: 200;
-}*/
-
 #color-list{
 	margin: 0;
 }
