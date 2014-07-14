@@ -3,11 +3,6 @@
 var getFileContents = function (selectedFile) {
   var reader = new FileReader();
 
-  // internall maybe:
-
-// var contentsObj = {/* whatver */ };
-//   FileReader.onload(contentsObj)
-
   reader.onload = function(contents) {
   var fileContents = contents.target.result;
 
@@ -21,27 +16,8 @@ var getFileContents = function (selectedFile) {
   var rgbaGroup = fileContents.toUpperCase().match(rgbaMatch);
   
   var colorList	= hexGroup.concat(rgbGroup).concat(rgbaGroup);
-  // $.unique(colorList);
-  // console.log(colorList);
-
 
   var $colorListUl = $('#color-list');
-
-
-    // $.fn.each = function (cb) {
-
-    //   // iterate over some stuff.
-
-    //   $(this); // => [elem1, elem2, elem3, ...]
-    //   var idx = 0, currentElem;
-
-    //   $(this).forEach(function (elem) {
-    //     cb(idx, elem);
-    //     idx += 1;
-    //   });
-
-    // };
-
 
 
     //add each matched color to #colorList UL
@@ -55,8 +31,8 @@ var getFileContents = function (selectedFile) {
       $li.appendTo($colorListUl);
     });
 
-    };
-    reader.readAsText(selectedFile);
+  };
+  reader.readAsText(selectedFile);
 };
 
 //Check if uploaded file is a CSS file
@@ -64,11 +40,8 @@ var isFileCss = function(selectedFileName, selectedFile) {
   var splitFileName   = selectedFileName.split('.');
   var selectedFileExt	= splitFileName[splitFileName.length-1];
 
-  if (selectedFileExt != "css") {
-    return false;
-  } else {
-    return true;
-  }
+  return selectedFileExt === "css";
+
 };
 
 //Give section a pattern background to see color's transparency
@@ -94,7 +67,6 @@ $(document).ready(function(){
 
   // Check for the various File API support.
   if (window.File && window.FileReader && window.FileList && window.Blob) {
-    // alert('Great success! All the File APIs are supported.');
   } else {
     alert('The File APIs are not fully supported in this browser.');
   }
@@ -110,9 +82,7 @@ $(document).ready(function(){
 		//make sure uploaded file is a css
 		if (isFileCss(selectedFileName)){
 			getFileContents(selectedFile);
-      // listBG('#color-list-wrapper');
       changeBtnValue();
-
 		} else {
 			alert("Not css, try again!");
 		}
